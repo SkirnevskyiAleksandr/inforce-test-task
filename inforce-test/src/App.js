@@ -1,21 +1,39 @@
 import{useState} from 'react'
 import ToDo from './toDo'
-import ToDoForm from './toDoForm' 
+import ToDoForm from './toDoForm'
 
 
 function App() {
   const [todos, setTodos] = useState([])
 
-  const addTask = () =>{
-
+  const addTask = (userInput) =>{
+    if(userInput){
+      const newItem = {
+        id: Math.random().toString(36).substr(2,9),
+        task: userInput,
+        complete:false,
+        imageUrl: "some url here",
+        name: "Product name",
+        count: 4,
+        size: {
+        width: 200,
+        height: 200
+        },
+        weight: "200g",
+        comments: ["CommentModel", "CommentModel"]
+      }
+      setTodos([...todos,newItem])
+    }
   }
 
-  const remooveTask = ()=> {
-
+  const removeTask = (id)=> {
+    setTodos([...todos.filter((todo) => todo.id != id)])
   }
 
-  const handleToggle = () =>{
-
+  const handleToggle = (id) =>{
+    setTodos([
+      ...todos.map((todo) => 
+      todo.id === id ? {...todo, complete: !todo.complete} : {...todo})])
   }
 
 
@@ -31,7 +49,7 @@ function App() {
         todo={todo}
         key={todo.id}
         toggleTask={handleToggle}
-        remooveTask={remooveTask}
+        removeTask={removeTask}
         />
       )
     })}  
