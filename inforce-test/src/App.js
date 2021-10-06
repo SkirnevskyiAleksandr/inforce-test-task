@@ -38,10 +38,12 @@ function App() {
 
 
   return (
+    // <form className="form" method="POST" action="www" name="products list">
     <div className="App">
     <header>
       <h1> Products list: {todos.length}</h1>
     </header>
+    
     <ToDoForm addTask={addTask}/>
     {todos.map((todo) => {
       return(
@@ -52,8 +54,12 @@ function App() {
         removeTask={removeTask}
         />
       )
-    })}  
+    })} 
+    
+    
     </div>
+    /* <button className="button" type = "submit"> send</button>
+    </form> */
   );
 }
 
